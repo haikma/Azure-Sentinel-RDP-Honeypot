@@ -26,7 +26,7 @@ Mục tiêu chính là chuyển đổi log bảo mật thô của Windows thành
 
 Thách thức chính là Event Log 4625 chỉ chứa IP nguồn, không có tọa độ địa lý.
 
-- **PowerShell Scripting:** Đã phát triển script **`Honeypot_Log_Enrichment.ps1`** (xem thư mục `PowerShell/`).
+- **PowerShell Scripting:** Đã phát triển script **`Honeypot_Log_Enrichment.ps1`**.
 - **Logic Script:** Script liên tục quét Event Log ID 4625 mới, trích xuất IP và gọi **ipgeolocation API** để lấy `latitude`, `longitude`, `country`.
 - **Đầu ra:** Ghi log đã được làm giàu vào file tùy chỉnh: `C:\ProgramData\failed_rdp.log`
 
@@ -37,7 +37,7 @@ Thách thức chính là Event Log 4625 chỉ chứa IP nguồn, không có tọ
 
 ### 4. Trực quan hóa (Visualization) và Phân tích
 
-- **KQL Query:** Sử dụng truy vấn **KQL** (xem file `KQL/RDP_Attack_Map_Query.kql`) để trích xuất và chuyển đổi các trường `latitude` / `longitude` sang định dạng số (`todouble()`).
+- **KQL Query:** Sử dụng truy vấn **KQL** (xem file `RDP_Attack_Map_Query.kql`) để trích xuất và chuyển đổi các trường `latitude` / `longitude` sang định dạng số (`todouble()`).
 - **Workbook:** Xây dựng **Workbook** trong Sentinel với Visualization là **Map** (Bản đồ) để trực quan hóa các điểm tấn công, sử dụng `AttackCount` để xác định kích thước chấm điểm.
 
 ## 📊 Kết quả & Phân tích Threat Hunting
@@ -45,10 +45,5 @@ Thách thức chính là Event Log 4625 chỉ chứa IP nguồn, không có tọ
 - **Tần suất tấn công:** Trong vòng **XX giờ** đầu tiên, đã thu thập được **X,XXX+** sự kiện tấn công Brute-force.
 - **Nguồn gốc:** Dữ liệu cho thấy các IP tấn công tập trung chủ yếu từ các quốc gia như **Romania, Netherlands, France, United States, và China**, khẳng định sự tồn tại của các botnet chuyên săn lùng RDP.
 - **Bằng chứng:** Bản đồ tấn công cung cấp cái nhìn trực quan về **phạm vi địa lý** và **cường độ** của các chiến dịch tấn công.
-
-## 🔗 Liên kết
-
-- [Link đến Workbook Map Screenshot: Images/map_screenshot.png]
-- [Link đến Bảng KQL Data Screenshot: Images/kqldata_screenshot.png]
 
 ---
