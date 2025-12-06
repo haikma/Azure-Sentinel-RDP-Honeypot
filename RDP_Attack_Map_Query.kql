@@ -1,0 +1,15 @@
+
+// Truy vấn KQL dùng để trích xuất và chuẩn hóa log Honeypot để trực quan hóa Bản đồ tấn công trong Microsoft Sentinel Workbook.
+
+FAILED_RDP_WITH_GEO_CL
+// 1. Dùng lệnh 'extend' và 'extract' để lấy dữ liệu từ trường RawData
+| extend latitude = todouble(extract(@"latitude:([0-9\-\.]+)", 1, RawData)),
+         longitude = todouble(extract(@"longitude:([0-9\-\.]+)", 1, RawData)),
+         country = extract(@"country:(.*?);", 1, RawData),
+         ip_address = extract(@"ip:(.*?);", 1, RawData)
+// 2. Lọc bỏ các giá trị tọa độ bị lỗi
+| where isnotnull(latitude) and isnotnull(longitude)
+// 3. Tổng hợp số lần tấn công theo từng vị trí và IP
+| summarize AttackCount = count() by ip_address, country, latitude, longitude
+// 4. Chọn các cột cuối cùng để hiển thị trong Workbook
+| project ip_address, country, latitude, longitude, AttackCount
