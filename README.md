@@ -42,9 +42,10 @@ Thách thức chính là Event Log 4625 chỉ chứa IP nguồn, không có tọ
 
 ## 📊 Kết quả & Phân tích Threat Hunting
 
-- **Tần suất tấn công:** Trong vòng **XX giờ** đầu tiên, đã thu thập được **X,XXX+** sự kiện tấn công Brute-force.
+- **Tần suất tấn công:** Trong vòng **24 giờ** đầu tiên, đã thu thập được **15** sự kiện tấn công Brute-force.
 - **Nguồn gốc:** Dữ liệu cho thấy các IP tấn công tập trung chủ yếu từ các quốc gia như **Romania, Netherlands, France, United States, và Egypt**, khẳng định sự tồn tại của các botnet chuyên săn lùng RDP.
 - **Bằng chứng:** Bản đồ tấn công cung cấp cái nhìn trực quan về **phạm vi địa lý** và **cường độ** của các chiến dịch tấn công.
 
 ---
+
 
